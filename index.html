@@ -1,0 +1,204 @@
+<!DOCTYPE html> <!-- Оголошення типу документа: HTML5 -->
+<html lang="en"> <!-- Початок HTML-документа, мова сторінки — англійська -->
+<head> <!-- Початок головної секції сторінки (не відображається напряму) -->
+  <meta charset="UTF-8"> <!-- Встановлює кодування символів UTF-8 для підтримки всіх мов -->
+  <title>Resume - Roman Kobrynovytch</title> <!-- Текст заголовка сторінки у вкладці браузера -->
+
+  <style>
+  body { /* Початок стилів для елемента <body> — усього тіла сторінки */
+    font-family: Arial, sans-serif; /* Основний шрифт — Arial, запасний — будь-який без засічок */
+    background-color: #2f2f2f;     /* Темно-сірий металік */
+    color: white;                  /* Білий колір тексту */
+    transition: background-color 0.3s, color 0.3s; /* Плавна анімація при зміні кольору фону чи тексту */
+  } /* Кінець блоку body */
+
+  .resume { /* Початок стилів для елемента з класом resume */
+    width: 700px; /* Ширина блоку — 700 пікселів */
+    background-color: #0056b3; /* Яскраво-синій фон */
+    padding: 30px; /* Внутрішні відступи по 30 пікселів з усіх сторін */
+    margin: 50px auto; /* 50px зверху та знизу, автоматичне вирівнювання по центру по горизонталі */
+    border-radius: 10px; /* Закруглення кутів */
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); /* Тінь навколо блоку */
+  } /* Кінець .resume */
+
+  h1 { /* Стилі для заголовків першого рівня */
+    font-size: 32px; /* Великий розмір шрифту */
+    margin-bottom: 5px; /* Відступ знизу */
+  } /* Кінець h1 */
+
+  h2 { /* Стилі для заголовків другого рівня */
+    font-size: 20px; /* Менший розмір шрифту */
+    border-bottom: 2px solid orange; /* Помаранчева лінія під заголовком */
+    padding-bottom: 5px; /* Відступ від тексту до лінії */
+  } /* Кінець h2 */
+
+  p, a { /* Стилі для параграфів і посилань */
+    font-size: 16px; /* Стандартний розмір тексту */
+    line-height: 1.5; /* Висота рядка — для зручності читання */
+  } /* Кінець p, a */
+
+  a { /* Додаткові стилі лише для посилань */
+    color: orange; /* Помаранчевий колір тексту */
+    text-decoration: none; /* Без підкреслення */
+    font-weight: bold; /* Жирний шрифт */
+  } /* Кінець a */
+
+  ul { /* Стилі для списків */
+    padding-left: 20px; /* Відступ зліва */
+  } /* Кінець ul */
+
+  li { /* Стилі для пунктів списку */
+    margin-bottom: 5px; /* Відстань між елементами списку */
+  } /* Кінець li */
+
+  .dark-theme { /* Стилі для нічної теми — застосовуються до тіла */
+    background-color: #111; /* Дуже темний сірий фон */
+    color: #eee; /* Світло-сірий текст */
+  } /* Кінець .dark-theme */
+
+  .dark-theme .resume { /* Стилі для блоку резюме в темній темі */
+    background-color: #222; /* Темно-сірий фон блоку */
+  } /* Кінець .dark-theme .resume */
+
+  #footer-info { /* Стилі для футера внизу сторінки */
+    text-align: center; /* Текст по центру */
+    margin-top: 30px; /* Відступ зверху */
+    font-size: 14px; /* Менший розмір шрифту */
+  } /* Кінець #footer-info */
+
+  #feedback-modal { /* Стилі для модального вікна */
+    display: none; /* Початково приховано */
+    position: fixed; /* Вікно не прокручується разом зі сторінкою */
+    top: 20%; /* Зміщення від верху сторінки */
+    left: 50%; /* Центрування по горизонталі */
+    transform: translateX(-50%); /* Вирівнювання по центру */
+    background-color: #0056b3; /* Фон модального вікна */
+    padding: 20px; /* Внутрішні відступи */
+    border-radius: 10px; /* Закруглені кути */
+    z-index: 1000; /* Показ поверх усіх інших елементів */
+    box-shadow: 0 0 20px black; /* Тінь навколо */
+  } /* Кінець #feedback-modal */
+
+  #feedback-modal input,
+  #feedback-modal textarea,
+  #feedback-modal button { /* Спільні стилі для полів введення, textarea та кнопки */
+    display: block; /* Кожен елемент — окремий рядок */
+    width: 100%; /* На всю ширину контейнера */
+    margin: 5px 0; /* Відступ зверху і знизу */
+    padding: 8px; /* Внутрішні відступи */
+    border: none; /* Без обводки */
+    border-radius: 5px; /* Закруглення кутів */
+  } /* Кінець інпутів, textarea і кнопки в модальному вікні */
+
+  button.theme-toggle { /* Стилі для кнопки перемикання теми */
+    position: fixed; /* Фіксоване положення на сторінці */
+    top: 10px; /* Відступ зверху */
+    right: 10px; /* Відступ справа */
+    padding: 8px 12px; /* Внутрішні відступи кнопки */
+    background: orange; /* Колір кнопки */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Закруглені кути */
+    cursor: pointer; /* Курсор-рука при наведенні */
+    font-weight: bold; /* Жирний шрифт */
+  } /* Кінець кнопки перемикання теми */
+</style>
+</head>
+<body> <!-- Початок тіла HTML-документа, усе, що відображається на сторінці -->
+
+  <!-- Кнопка для ручного перемикання теми (світла/темна) -->
+  <button class="theme-toggle" onclick="toggleTheme()">Перемкнути тему</button>
+
+  <!-- Основний блок резюме -->
+  <div class="resume"> <!-- Контейнер із класом resume -->
+
+    <h1>Roman<br>Kobrynovytch</h1> <!-- Головне ім’я, <br> створює перенос рядка між іменем і прізвищем -->
+
+    <h2>Developer</h2> <!-- Професія -->
+
+    <h2>Objective</h2> <!-- Назва секції цілей -->
+    <p>To obtain a challenging and highly paid web developer position where my skills and experience in web development will be utilized at the highest level.</p> <!-- Опис цілі (мети) працевлаштування -->
+
+    <h2>Education</h2> <!-- Назва секції освіти -->
+    <a href="https://lpnu.ua/"><strong>Lviv Polytechnic National University</strong></a> <!-- Посилання на сайт університету, виділене жирним -->
+    <p>Website development</p> <!-- Напрям/курс -->
+    <p>Web programming</p> <!-- Напрям/курс -->
+
+    <h2>Contact</h2> <!-- Назва секції контактів -->
+    <p>Lviv, Ukraine</p> <!-- Місто -->
+    <p>0732121707</p> <!-- Телефон -->
+    <p>roman.kobrynovych.kbz.2020@lpnu.ua</p> <!-- Email -->
+
+    <h2>Experience</h2> <!-- Назва секції досвіду -->
+    <ul> <!-- Список місць роботи -->
+      <li>Brander</li> <!-- Перше місце роботи -->
+      <li>Promodex</li> <!-- Друге місце роботи -->
+      <li>Linecore</li> <!-- Третє місце роботи -->
+    </ul>
+
+  </div> <!-- Кінець блоку резюме -->
+
+  <!-- Модальне вікно з формою зворотного зв'язку (початково приховане) -->
+  <div id="feedback-modal"> <!-- Контейнер модального вікна -->
+    <form action="https://formspree.io/f/mwplyzav" method="POST"> <!-- Форма надсилається через Formspree -->
+
+      <input type="text" name="name" placeholder="Ім’я" required> <!-- Поле для імені (обов'язкове) -->
+      <input type="email" name="email" placeholder="Email" required> <!-- Поле для email (обов'язкове) -->
+      <input type="tel" name="phone" placeholder="Номер телефону"> <!-- Поле для телефону -->
+      <textarea name="message" placeholder="Ваше повідомлення"></textarea> <!-- Поле для повідомлення -->
+      <button type="submit">Відправити</button> <!-- Кнопка надсилання форми -->
+
+    </form> <!-- Кінець форми -->
+  </div> <!-- Кінець модального вікна -->
+
+  <footer id="footer-info"></footer> <!-- Порожній футер, у який буде додана інформація з JavaScript -->
+
+  <script> <!-- Початок блоку JavaScript -->
+
+    // Створюємо об'єкт із даними про систему користувача
+    const info = {
+      userAgent: navigator.userAgent,   // Інформація про браузер
+      platform: navigator.platform,     // Операційна система
+      language: navigator.language      // Мова браузера
+    };
+
+    // Зберігаємо ці дані в localStorage як рядок
+    localStorage.setItem("systemInfo", JSON.stringify(info));
+
+    // Отримуємо футер і додаємо туди збережені дані
+    const footer = document.getElementById("footer-info");
+    const savedInfo = JSON.parse(localStorage.getItem("systemInfo")); // Отримуємо назад об'єкт
+    footer.innerText = `Браузер: ${savedInfo.userAgent}, Платформа: ${savedInfo.platform}, Мова: ${savedInfo.language}`; // Виводимо в футер
+
+    // Отримуємо коментарі з API JSONPlaceholder (фейковий бекенд для тестування)
+    fetch('https://jsonplaceholder.typicode.com/posts/1/comments') // Надсилаємо запит
+      .then(res => res.json()) // Перетворюємо відповідь у формат JSON
+      .then(data => {
+        const container = document.getElementById("comments"); // Знаходимо елемент з ID comments (не створений у HTML, треба додати!)
+        data.forEach(comment => { // Для кожного коментаря
+          const p = document.createElement("p"); // Створюємо параграф
+          p.innerText = `${comment.name}: ${comment.body}`; // Записуємо ім’я та текст коментаря
+          container.appendChild(p); // Додаємо параграф у контейнер
+        });
+      });
+
+    // Через 60 секунд показуємо модальне вікно
+    setTimeout(() => {
+      document.getElementById("feedback-modal").style.display = "block"; // Показуємо вікно
+    }, 60000); // 60000 мілісекунд = 60 секунд
+
+    // Функція перемикання теми вручну (викликається кнопкою)
+    function toggleTheme() {
+      document.body.classList.toggle("dark-theme"); // Додає/знімає клас dark-theme
+    }
+
+    // Автоматичне вмикання нічної теми після 21:00 або до 7:00
+    const hour = new Date().getHours(); // Отримуємо поточну годину
+    if (hour >= 21 || hour < 7) {
+      document.body.classList.add("dark-theme"); // Якщо ніч — вмикаємо темну тему
+    }
+
+  </script> <!-- Кінець JavaScript -->
+
+</body> <!-- Кінець тіла HTML-документа -->
+
+</html>
